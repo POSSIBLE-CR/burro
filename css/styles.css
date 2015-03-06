@@ -1,0 +1,266 @@
+html,body {
+    margin: 0;
+    padding: 0;
+}
+
+#inner-dropzone {
+    top: 50px;
+    left: 35px;
+    width: 50px;
+    height: 50px;
+    /*border: solid 1px green;*/
+    position: absolute;
+    background-color: transparent;
+}
+
+.tail {
+    display: none;
+    z-index: 2;
+    position: absolute;
+}
+
+.donkey {
+    top: 0;
+    left: 600px;
+    z-index: 1;
+    width: 340px;
+    height: 226px;
+    position: absolute;
+}
+
+.drop-active {
+    border-color: #666;
+}
+
+.drop-target {
+    background-color: #29e;
+}
+
+.drag-drop {
+    display: inline-block;
+
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+
+    transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop { 
+    background-color: #4e4;
+}
+
+.dropzone {
+    position: absolute;
+}
+
+.obstacle1 {
+    /*top:400px;
+    left:600px;*/
+}
+
+.obstacle2 {
+    top:0;
+    left:400px;
+}
+
+/* SKINS */
+/*********************/
+
+#mainWrapper {
+    width: 1024px;
+    height: 768px;
+    background-size: 100%;
+}
+/* -------------------------------------------------------------------------------------
+ * Estefanía Tastan */
+.estefaniaTastan {
+    background: transparent url('../img/assetsEstefaniaTastan/bg.jpg') left top no-repeat;
+}
+
+.estefaniaTastan .tail {
+    width: 72.5px;
+    height: 117px;
+    background: transparent url('../img/assetsEstefaniaTastan/tail.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.estefaniaTastan .donkey {
+    width: 345px;
+    height: 250px;
+    background: transparent url('../img/assetsEstefaniaTastan/donkey.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.estefaniaTastan .obstacle1 {
+    width: 150px;
+    height: 150px;
+    background: transparent url('../img/assetsEstefaniaTastan/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.estefaniaTastan .obstacle2 {
+    width: 150px;
+    height: 250px;
+    background: transparent url('../img/assetsEstefaniaTastan/obstacle2.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.estefaniaTastan .obstacle3 {
+    width: 150px;
+    height: 150px;
+    background: transparent url('../img/assetsEstefaniaTastan/obstacle3.png') left top no-repeat;
+    background-size: 100%;
+}
+
+/* -------------------------------------------------------------------------------------
+ * Pablo Montero */
+.pabloMontero {
+    background: transparent url('../img/assetsPabloMontero/bg.jpg') left top no-repeat;
+}
+
+.pabloMontero .tail {
+    width: 51px;
+    height: 144px;
+    background: transparent url('../img/assetsPabloMontero/tail.png') left top no-repeat;
+}
+
+.pabloMontero .donkey {
+    width: 340px;
+    height: 250px;
+    background: transparent url('../img/assetsPabloMontero/donkey.png') left top no-repeat;
+}
+
+.pabloMontero .obstacle1 {
+    width: 118px;
+    height: 115px;
+    background: transparent url('../img/assetsPabloMontero/obstacle1.png') left top no-repeat;
+}
+
+.pabloMontero .obstacle2 {
+    width: 146px;
+    height: 87px;
+    background: transparent url('../img/assetsPabloMontero/obstacle2.png') left top no-repeat;
+}
+
+.pabloMontero .obstacle3 {
+    width: 122px;
+    height: 100px;
+    background: transparent url('../img/assetsPabloMontero/obstacle3.png') left top no-repeat;
+}
+
+
+ /* -------------------------------------------------------------------------------------
+  * Fabio Castro */
+.fabioCastro {
+    background: transparent url('../img/assetsFabioCastro/bg.jpg') left top no-repeat;
+}
+
+.fabioCastro .tail {
+    width: 132px;
+    height: 135px;
+    background: transparent url('../img/assetsFabioCastro/tail.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.fabioCastro .donkey {
+    width: 313px;
+    height: 250px;
+    background: transparent url('../img/assetsFabioCastro/donkey.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.fabioCastro .obstacle1 {
+    width: 76px;
+    height: 151px;
+    background: transparent url('../img/assetsFabioCastro/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.fabioCastro .obstacle2 {
+    width: 76px;
+    height: 151px;
+    background: transparent url('../img/assetsFabioCastro/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.fabioCastro .obstacle3 {
+    width: 76px;
+    height: 151px;
+    background: transparent url('../img/assetsFabioCastro/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+/* -------------------------------------------------------------------------------------
+ * Paz Ulloa */
+.pazUlloa {
+    background: transparent url('../img/assetsPazUlloa/bg.jpg') left top no-repeat;
+}
+
+.pazUlloa .tail {
+    width: 97px;
+    height: 190px;
+    background: transparent url('../img/assetsPazUlloa/tail.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pazUlloa .donkey {
+    width: 239px;
+    height: 260px;
+    background: transparent url('../img/assetsPazUlloa/donkey.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pazUlloa .obstacle1 {
+    width: 177.5px;
+    height: 239px;
+    background: transparent url('../img/assetsPazUlloa/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pazUlloa .obstacle2 {
+    width: 245px;
+    height: 132.5px;
+    background: transparent url('../img/assetsPazUlloa/obstacle2.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pazUlloa .obstacle3 {
+    width: 111.5px;
+    height: 146.5px;
+    background: transparent url('../img/assetsPazUlloa/obstacle3.png') left top no-repeat;
+    background-size: 100%;
+}
+
+/* -------------------------------------------------------------------------------------
+ * Gabo Murillo */
+.gaboMurillo {
+    background: transparent url('../img/assetsgaboMurillo/bg.jpg') left top no-repeat;
+}
+
+.gaboMurillo .tail {
+    width: 97.5px;
+    height: 175.5px;
+    background: transparent url('../img/assetsgaboMurillo/tail.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.gaboMurillo .donkey {
+    width: 239px;
+    height: 260px;
+    background: transparent url('../img/assetsgaboMurillo/donkey.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.gaboMurillo .obstacle1 {
+    width: 131px;
+    height: 87.5px;
+    background: transparent url('../img/assetsgaboMurillo/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.gaboMurillo .obstacle2 {
+    width: 106px;
+    height: 156.5px;
+    background: transparent url('../img/assetsgaboMurillo/obstacle2.png') left top no-repeat;
+    background-size: 100%;
+}

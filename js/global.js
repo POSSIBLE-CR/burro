@@ -8,6 +8,12 @@ var burroFID2015 = burroFID2015 || {};
     /* ------------------------------------------------------------------------------------
      * Global Variables */
     vars = {
+
+        wrapper         : {},
+        endGameView     : {},
+        playAgainButton : {},
+        endGameViewTitle: {},
+        endGameViewImage: {},
         gameOver        : false,
 
         windowHeight    : window.innerHeight,
@@ -43,7 +49,7 @@ var burroFID2015 = burroFID2015 || {};
             donkeyHeight    : 250,
             posX : 0,
             posY : 0,
-            elementID   : 'outer-dropzone',
+            elementID   : 'outer-dropzone'
         },
         vars.obstacle1 = { 
             obstacleWidth: 150,
@@ -213,21 +219,35 @@ var burroFID2015 = burroFID2015 || {};
         if (win){
             vars.clapSound.play();
             vars.gameOver = false;
-            alert("WIN");
-        }else{
+            vars.endGameViewTitle.innerHTML = "WINNER!!!!!!";
+            vars.endGameViewImage.src = 'img/themes/'+ vars.skins[vars.skinPosition] + '/donkeyWin.png';
+            addClass(vars.wrapper,"hide");
+            addClass(vars.endGameView,"winner show");
+        }else {
             vars.gameOver = true;
             vars.donkeySound.play();
-            alert("lost");
+            vars.endGameViewTitle.innerHTML = "LOSER!!!!!!";
+            vars.endGameViewImage.src = 'img/themes/'+ vars.skins[vars.skinPosition] + '/donkeyFail.png';
+            addClass(vars.wrapper, "hide");
+            addClass(vars.endGameView, "loser show");
         }
-        resetGame();
+    }
+
+    /***
+     * Add a class to the element
+     * @param element DOM element
+     * @param classToAdd class to add
+     */
+    function addClass(element, classToAdd){
+        var currentClass = element.getAttribute("class");
+        element.setAttribute("class", currentClass + ' ' + classToAdd);
     }
     /* ------------------------------------------------------------------------------------
      * Inits the selected assets set. */
     function initSkin() {
-        var skin = vars.skins[vars.skinPosition],
-        //var skin = vars.skins[3],
-        wrapper = document.getElementById('mainWrapper');
-        wrapper.setAttribute("class", skin + " dropzone");
+        var skin = vars.skins[vars.skinPosition];
+        vars.wrapper.setAttribute("class", skin + " dropzone");
+        vars.endGameView.setAttribute("class", skin);
     }
 
     /* ------------------------------------------------------------------------------------
@@ -467,7 +487,9 @@ var burroFID2015 = burroFID2015 || {};
      * Init all required functions */
     function init () {
         var skin = vars.skins[vars.skinPosition];
-        
+        vars.wrapper = document.getElementById('mainWrapper');
+        vars.endGameView = document.getElementById('endGameView');
+
         initSkin(skin);
         createElements();
         placeElements();
@@ -478,6 +500,12 @@ var burroFID2015 = burroFID2015 || {};
                 resetGame();
             }
         });
+        vars.playAgainButton = document.getElementById("playAgain");
+        vars.endGameViewTitle = document.getElementById("endGameViewTitle");
+        vars.endGameViewImage = document.getElementById("endGameViewImage");
+
+        vars.playAgainButton.addEventListener("touchend", resetGame, false);
+        vars.playAgainButton.addEventListener("click", resetGame, false);
 
         // Start Doneky movement animation
         setInterval(animateElements, 5);

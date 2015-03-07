@@ -9,7 +9,7 @@ var burroFID2015 = burroFID2015 || {};
      * Global Variables */
     vars = {
         gameOver        : false,
-   
+
         windowHeight    : window.innerHeight,
         windowWidth     : window.innerWidth,
         skins           : ['estefaniaTastan','pabloMontero','pazUlloa','fabioCastro','gaboMurillo'],
@@ -162,20 +162,6 @@ var burroFID2015 = burroFID2015 || {};
                 obstacleTop = document.getElementsByClassName("obstacle2")[0].style.top;
             // console.log('left '+obstacleLeft+' top '+obstacleTop);
 
-        },
-        
-        onend: function (event) { // call this function on every dragend event
-            /**************************************/
-            /***** This is the GAME OVER event ****/
-            if(vars.gameOver){
-                vars.donkeySound.play();
-                vars.gameOver = false;
-                 // vars.gameOver = true;
-                // vars.donkeySound.play();
-                // alert("Game OVER");
-                //vars.gameOver = true;
-                // resetGame();
-            }
         }
       });
 
@@ -188,17 +174,13 @@ var burroFID2015 = burroFID2015 || {};
         // Listen for drop related events (Tail dropped inside the Donkey area.)
         ondrop: function (event) {
             var targetClassName = event.target.classList[1];
-            
-            /************************************/
+
             /***** This is the GAME WIN event ****/
             if(targetClassName === 'donkey'){
-                vars.gameOver = true;
-                vars.clapSound.play();
-                alert("WIN");
-                resetGame();
+                endGame(true);
             }
             else{
-                vars.gameOver = false;                
+                endGame(false);
             }
         },
 
@@ -223,13 +205,29 @@ var burroFID2015 = burroFID2015 || {};
         }
     });
 
+    /***
+     * handles the end of the game
+     * @param win {Boolean} is true if the user won the game or false if it lost
+     */
+    function endGame(win){
+        if (win){
+            vars.clapSound.play();
+            vars.gameOver = false;
+            alert("WIN");
+        }else{
+            vars.gameOver = true;
+            vars.donkeySound.play();
+            alert("lost");
+        }
+        resetGame();
+    }
     /* ------------------------------------------------------------------------------------
      * Inits the selected assets set. */
     function initSkin() {
         var skin = vars.skins[vars.skinPosition],
         //var skin = vars.skins[3],
         wrapper = document.getElementById('mainWrapper');
-        wrapper.setAttribute("class", skin);
+        wrapper.setAttribute("class", skin + " dropzone");
     }
 
     /* ------------------------------------------------------------------------------------
@@ -391,13 +389,6 @@ var burroFID2015 = burroFID2015 || {};
     /* ------------------------------------------------------------------------------------
      * Resets all values to the default state */
     function resetGame(){
-        if (!vars.gameOver) {
-            alert("Reiniciar el juego");
-        }
-        else {
-            vars.gameOver = false;        
-        }
-
         resetDonkey();
         resetDonkeyTailPosition();
 

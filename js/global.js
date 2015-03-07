@@ -27,14 +27,8 @@ var burroFID2015 = burroFID2015 || {};
         obstacle3       : {},
         obstacles       : [],
         tail            : {},
-        donkey : {},
+        donkey : {}
 
-
-        donkeyDirection : 'down',
-        donkeyWidth     : 345,
-        donkeyPositionX : (window.innerWidth-345),
-        donkeyPositionY : 0,
-        donkeyElement   : document.getElementById("outer-dropzone"),
     };
 
     /* ------------------------------------------------------------------------------------
@@ -43,6 +37,14 @@ var burroFID2015 = burroFID2015 || {};
     function createElements(){
         var skin = vars.skins[vars.skinPosition];
 
+        vars.donkey = {
+            donkeyDirection : 'down',
+            donkeyWidth     : 345,
+            donkeyHeight    : 250,
+            posX : 0,
+            posY : 0,
+            elementID   : 'outer-dropzone',
+        },
         vars.obstacle1 = { 
             obstacleWidth: 150,
             obstacleHeight: 150,
@@ -69,14 +71,6 @@ var burroFID2015 = burroFID2015 || {};
         };
 
         vars.obstacles = [vars.obstacle1, vars.obstacle2, vars.obstacle3];
-
-        vars.donkey = {
-            donkeyDirection : 'down',
-            donkeyWidth     : 345,
-            donkeyPositionX : (window.innerWidth-345),
-            donkeyPositionY : 0,
-            donkeyElement   : document.getElementById("outer-dropzone"),
-        }
 
         if(skin == 'estefaniaTastan') {
             // vars.obstacle1 = { 
@@ -117,15 +111,16 @@ var burroFID2015 = burroFID2015 || {};
     }
 
     /* ------------------------------------------------------------------------------------
-     * Places the 3 obstacles according to the objects' positions */
-     //TODO: create an array to store the 3 obstacle objects and loop them on this function
-    function placeObstacles(){
+     * Draws all the animated elements on the screen */
+    function placeElements(){
         for(var i=0;i<vars.obstacles.length;i++){
             var obstacle = vars.obstacles[i];
 
             document.getElementById(obstacle.elementID).style.left = obstacle.posX+'px';
             document.getElementById(obstacle.elementID).style.top = obstacle.posY+'px';
         }
+
+        vars.donkey.posX = (window.innerWidth-vars.donkey.donkeyWidth);
     }
 
 
@@ -134,7 +129,7 @@ var burroFID2015 = burroFID2015 || {};
     interact('.draggable')
         .draggable({
             // enable inertial throwing
-            inertia: true,
+            inertia: false,
             // keep the element within the area of it's parent
             restrict: {
                 restriction: parent,
@@ -247,49 +242,52 @@ var burroFID2015 = burroFID2015 || {};
     /* ------------------------------------------------------------------------------------
      * Donkey movement animation */
     function animateDonkey () {
+        var donkey = vars.donkey,
+            direction = donkey.donkeyDirection,
+            el = document.getElementById(donkey.elementID);
 
-        // var donkey = vars.donkey
-
-        if(vars.donkeyDirection==='down'){
-            vars.donkeyElement.style.top = vars.donkeyPositionY + 'px';
-            vars.donkeyPositionY++;    
+        if(direction==='down'){
+            el.style.top = donkey.posY + 'px';
+            donkey.posY++;    
         }
-        else if(vars.donkeyDirection==='left'){
-            vars.donkeyElement.style.left = vars.donkeyPositionX + 'px';
-            vars.donkeyPositionX--;    
+        else if(direction==='left'){
+            el.style.left = donkey.posX + 'px';
+            donkey.posX--;    
         }
-        else if(vars.donkeyDirection==='top'){
-            vars.donkeyElement.style.top = vars.donkeyPositionY + 'px';
-            vars.donkeyPositionY--;
+        else if(direction==='top'){
+            el.style.top = donkey.posY + 'px';
+            donkey.posY--;
         }
-        else if(vars.donkeyDirection==='right'){
-            vars.donkeyElement.style.left = vars.donkeyPositionX + 'px';
-            vars.donkeyPositionX++;    
+        else if(direction==='right'){
+            el.style.left = donkey.posX + 'px';
+            donkey.posX++;    
         }
-        else if(vars.donkeyDirection=='topLeft'){
-            vars.donkeyElement.style.top = vars.donkeyPositionY + 'px';
-            vars.donkeyPositionY--;
-            vars.donkeyElement.style.left = vars.donkeyPositionX + 'px';
-            vars.donkeyPositionX-=1.3;
+        else if(direction=='topLeft'){
+            el.style.top = donkey.posY + 'px';
+            donkey.posY--;
+            el.style.left = donkey.posX + 'px';
+            donkey.posX-=1.3;
         }
-        else if(vars.donkeyDirection=='topRight'){
-            vars.donkeyElement.style.top = vars.donkeyPositionY + 'px';
-            vars.donkeyPositionY--;
-            vars.donkeyElement.style.left = vars.donkeyPositionX + 'px';
-            vars.donkeyPositionX+=1.3;    
+        else if(direction=='topRight'){
+            el.style.top = donkey.posY + 'px';
+            donkey.posY--;
+            el.style.left = donkey.posX + 'px';
+            donkey.posX+=1.3;    
         }
 
-        if(vars.donkeyDirection==='top' && vars.donkeyPositionY <= 0) {
-            vars.donkeyDirection='right';
+
+        if(donkey.donkeyDirection==='top' && donkey.posY <= 0) {
+            donkey.donkeyDirection='right';
         }
-        if(vars.donkeyDirection==='left' && vars.donkeyPositionX <= (0)) {
-            vars.donkeyDirection='top';
+        if(donkey.donkeyDirection==='left' && donkey.posX <= (0)) {
+            donkey.donkeyDirection='top';
         }
-        if(vars.donkeyDirection==='right' && vars.donkeyPositionX >= (vars.windowWidth-345)) {
-            vars.donkeyDirection='down';
+        if(donkey.donkeyDirection==='right' && donkey.posX >= (vars.windowWidth-donkey.donkeyWidth)) {
+            donkey.donkeyDirection='down';
         }
-        if(vars.donkeyDirection==='down' && vars.donkeyPositionY >= (vars.windowHeight-226)) {
-            vars.donkeyDirection='left';
+        if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-donkey.donkeyHeight)) {
+
+            donkey.donkeyDirection='left';
         }
 
        
@@ -300,24 +298,24 @@ var burroFID2015 = burroFID2015 || {};
 
         if(skin == 'fabioCastro'){
             if(vars.fabioFirstTimeDown){
-                if(vars.donkeyDirection==='down' && vars.donkeyPositionY >= (vars.windowHeight-250)) {
-                    vars.donkeyDirection='topLeft';
+                if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-donkey.donkeyHeight)) {
+                    donkey.donkeyDirection='topLeft';
                     vars.fabioFirstTimeDown = false;
                 }
-                if(vars.donkeyDirection==='topLeft' && vars.donkeyPositionY <= 0 && vars.donkeyPositionX <= 0) {
-                    vars.donkeyDirection='down';
+                if(donkey.donkeyDirection==='topLeft' && donkey.posY <= 0 && vars.donkeyPositionX <= 0) {
+                    donkey.donkeyDirection='down';
                 }
             }
             else {
-                if(vars.donkeyDirection==='down' && vars.donkeyPositionY >= (vars.windowHeight-250)) {
-                    vars.donkeyDirection='topRight';
+                if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-250)) {
+                    donkey.donkeyDirection='topRight';
                 }
-                if(vars.donkeyPositionY <= 0) {
-                    if(vars.donkeyDirection==='topLeft' && vars.donkeyPositionX <= 0){
-                        vars.donkeyDirection='down';
+                if(donkey.posY <= 0) {
+                    if(donkey.donkeyDirection==='topLeft' && vars.donkeyPositionX <= 0){
+                        donkey.donkeyDirection='down';
                     }
-                    if(vars.donkeyDirection==='topRight' && vars.donkeyPositionX >= (vars.windowWidth-345)){
-                        vars.donkeyDirection='down';
+                    if(donkey.donkeyDirection==='topRight' && vars.donkeyPositionX >= (vars.windowWidth-donkey.donkeyWidth)){
+                        donkey.donkeyDirection='down';
                         vars.fabioFirstTimeDown = true;
                     }
                 }               
@@ -400,7 +398,7 @@ var burroFID2015 = burroFID2015 || {};
             vars.gameOver = false;        
         }
 
-        resetDonkeyPosition();
+        resetDonkey();
         resetDonkeyTailPosition();
 
         vars.skinPosition++;
@@ -413,14 +411,17 @@ var burroFID2015 = burroFID2015 || {};
 
     /* ------------------------------------------------------------------------------------
      * Resets the donkey position and movement direction */
-    function resetDonkeyPosition(){
-        var donkey = document.getElementById('outer-dropzone');
-        vars.donkeyDirection = 'down';
-        vars.donkeyPositionX = (window.innerWidth-vars.donkeyWidth);
-        vars.donkeyPositionY = 0;
+    function resetDonkey(){
+        var donkey = vars.donkey,
+            el = document.getElementById(donkey.elementID);
+        
+        donkey.posX = (window.innerWidth-donkey.donkeyWidth);
+        donkey.posY = 0;
+        //console.log(donkey.posY);
 
-        vars.donkeyElement.style.top = vars.donkeyPositionY+'px';
-        vars.donkeyElement.style.left = vars.donkeyPositionX+'px';
+        el.style.top = donkey.posY+'px';
+        el.style.left = donkey.posX+'px';
+        donkey.donkeyDirection = 'down';
     }
 
     /* ------------------------------------------------------------------------------------
@@ -478,7 +479,7 @@ var burroFID2015 = burroFID2015 || {};
         
         initSkin(skin);
         createElements();
-        placeObstacles();
+        placeElements();
 
         // If space bar is hit, reset the game
         window.addEventListener('keydown', function(e){
@@ -488,7 +489,7 @@ var burroFID2015 = burroFID2015 || {};
         });
 
         // Start Doneky movement animation
-        setInterval(animateElements, 2);
+        setInterval(animateElements, 5);
     }
 
     init();

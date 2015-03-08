@@ -2,6 +2,7 @@
 // February 2015
 
 var burroFID2015 = burroFID2015 || {};
+var currentGameTimeOut;
 
 (function (context) {
 
@@ -14,7 +15,7 @@ var burroFID2015 = burroFID2015 || {};
         playAgainButton : {},
         endGameViewTitle: {},
         endGameViewImage: {},
-        gameOver        : false,
+        win             : false,
 
         windowHeight    : window.innerHeight,
         windowWidth     : window.innerWidth,
@@ -168,6 +169,14 @@ var burroFID2015 = burroFID2015 || {};
                 obstacleTop = document.getElementsByClassName("obstacle2")[0].style.top;
             // console.log('left '+obstacleLeft+' top '+obstacleTop);
 
+        },
+
+        onend : function(event){
+            if (!currentGameTimeOut && !vars.win) {
+                currentGameTimeOut = setTimeout(function () {
+                    endGame(false)
+                }, 2000);
+            }
         }
       });
 
@@ -179,8 +188,9 @@ var burroFID2015 = burroFID2015 || {};
 
         // Listen for drop related events (Tail dropped inside the Donkey area.)
         ondrop: function (event) {
+            vars.win = true;
+            clearTimeout(currentGameTimeOut);
             var targetClassName = event.target.classList[1];
-
             /***** This is the GAME WIN event ****/
             if(targetClassName === 'donkey'){
                 endGame(true);
@@ -188,26 +198,6 @@ var burroFID2015 = burroFID2015 || {};
             else{
                 endGame(false);
             }
-        },
-
-        ondropactivate: function (event) {
-            // add active dropzone feedback
-            event.target.classList.add('drop-active');
-        },
-
-        ondragenter: function (event) {
-            var draggableElement = event.relatedTarget,
-            dropzoneElement = event.target;
-
-            // feedback the possibility of a drop
-            dropzoneElement.classList.add('drop-target');
-            draggableElement.classList.add('can-drop');
-        },
-
-        ondropdeactivate: function (event) {
-            // remove active dropzone feedback
-            event.target.classList.remove('drop-active');
-            event.target.classList.remove('drop-target');
         }
     });
 
@@ -246,7 +236,7 @@ var burroFID2015 = burroFID2015 || {};
      * Inits the selected assets set. */
     function initSkin() {
         var skin = vars.skins[vars.skinPosition];
-        vars.wrapper.setAttribute("class", skin + " dropzone");
+        vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
     }
 
@@ -418,6 +408,8 @@ var burroFID2015 = burroFID2015 || {};
             vars.skinPosition = 0;
         }
         initSkin();
+        vars.win = false;
+        currentGameTimeOut = null;
     }
 
     /* ------------------------------------------------------------------------------------
@@ -507,7 +499,7 @@ var burroFID2015 = burroFID2015 || {};
         vars.playAgainButton.addEventListener("touchend", resetGame, false);
         vars.playAgainButton.addEventListener("click", resetGame, false);
 
-        // Start Doneky movement animation
+        // Start Donkey movement animation
         setInterval(animateElements, 5);
     }
 

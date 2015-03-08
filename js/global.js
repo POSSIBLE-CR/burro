@@ -6,8 +6,9 @@ var currentGameTimeOut;
 
 (function (context) {
 
-    /* ------------------------------------------------------------------------------------
-     * Global Variables */
+    /***
+     * Global Variables 
+     */
     vars = {
 
         wrapper         : {},
@@ -38,8 +39,9 @@ var currentGameTimeOut;
 
     };
 
-    /* ------------------------------------------------------------------------------------
-     * Creates Elements Objects */
+    /***
+     * Creates Elements Objects 
+     */
     // var skin = vars.skins[vars.skinPosition];
     function createElements(){
         var skin = vars.skins[vars.skinPosition];
@@ -117,8 +119,9 @@ var currentGameTimeOut;
 
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Draws all the animated elements on the screen */
+    /***
+     * Draws all the animated elements on the screen 
+     */
     function placeElements(){
         for(var i=0;i<vars.obstacles.length;i++){
             var obstacle = vars.obstacles[i];
@@ -131,8 +134,9 @@ var currentGameTimeOut;
     }
 
 
-    /* ------------------------------------------------------------------------------------
-     * Adds draggable functionality. Targets elements with the "draggable" class */
+    /***
+     * Adds draggable functionality. Targets elements with the "draggable" class 
+     */
     interact('.draggable')
         .draggable({
             // enable inertial throwing
@@ -180,8 +184,9 @@ var currentGameTimeOut;
         }
       });
 
-    /* ------------------------------------------------------------------------------------
-     * Adds dropzone functionality. Enables draggables to be dropped into the dropzone */
+    /***
+     * Adds dropzone functionality. Enables draggables to be dropped into the dropzone 
+     */
     interact('.dropzone').dropzone({
         accept: '#yes-drop', // only accept elements matching this CSS selector
         overlap: 0.65, // Require a 65% element overlap for a drop to be possible
@@ -232,23 +237,27 @@ var currentGameTimeOut;
         var currentClass = element.getAttribute("class");
         element.setAttribute("class", currentClass + ' ' + classToAdd);
     }
-    /* ------------------------------------------------------------------------------------
-     * Inits the selected assets set. */
+    
+    /***
+     * Inits the selected assets set. 
+     */
     function initSkin() {
         var skin = vars.skins[vars.skinPosition];
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Triggers all the animations */
+    /***
+     * Triggers all the animations 
+     */
      function animateElements(){
         animateDonkey();
         animateObstacles();
      }
 
-    /* ------------------------------------------------------------------------------------
-     * Donkey movement animation */
+    /***
+     * Donkey movement animation 
+     */
     function animateDonkey () {
         var donkey = vars.donkey,
             direction = donkey.donkeyDirection,
@@ -331,8 +340,9 @@ var currentGameTimeOut;
         }
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Obstacles movement animation */
+    /***
+     * Obstacles movement animation 
+     */
      function animateObstacles(){
 
         for(var i=0;i<vars.obstacles.length;i++){
@@ -396,8 +406,9 @@ var currentGameTimeOut;
         }
      }
 
-    /* ------------------------------------------------------------------------------------
-     * Resets all values to the default state */
+    /***
+     * Resets all values to the default state 
+     */
     function resetGame(){
         resetDonkey();
         resetDonkeyTailPosition();
@@ -412,8 +423,9 @@ var currentGameTimeOut;
         currentGameTimeOut = null;
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Resets the donkey position and movement direction */
+    /***
+     * Resets the donkey position and movement direction 
+     */
     function resetDonkey(){
         var donkey = vars.donkey,
             el = document.getElementById(donkey.elementID);
@@ -427,8 +439,9 @@ var currentGameTimeOut;
         donkey.donkeyDirection = 'down';
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Resets the donkey tail position */
+    /***
+     * Resets the donkey tail position 
+     */
     function resetDonkeyTailPosition(){
         var target = document.getElementById('yes-drop');
 
@@ -440,24 +453,27 @@ var currentGameTimeOut;
         target.setAttribute('data-y', 0);
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Get a style property of an element */
+    /***
+     * Get a style property of an element 
+     */
     function getStyle(el,styleProp) {
         var style = window.getComputedStyle(el),
             propertyValue = style.getPropertyValue(styleProp);
         return propertyValue;
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Check overlap between the tail and the obstacles */
+    /***
+     * Check overlap between the tail and the obstacles 
+     */
     function checkTailPosition(){
         if(isTailOverObstacle(vars.obstacle1) || isTailOverObstacle(vars.obstacle2) || isTailOverObstacle(vars.obstacle3) ){
             vars.beepSound.play();            
         }
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Checks if tail is moving over an obstacle */
+    /***
+     * Checks if tail is moving over an obstacle 
+     */
     function isTailOverObstacle(obstacleElement){
         var tailX = vars.tail.tailX,
             tailY = vars.tail.tailY,
@@ -475,8 +491,9 @@ var currentGameTimeOut;
         }
     }
 
-    /* ------------------------------------------------------------------------------------
-     * Init all required functions */
+    /***
+     * Init all required functions 
+     */
     function init () {
         var skin = vars.skins[vars.skinPosition];
         vars.wrapper = document.getElementById('mainWrapper');

@@ -13,7 +13,6 @@ var currentGameTimeOut;
 
         wrapper         : {},
         endGameView     : {},
-        playAgainButton : {},
         endGameViewTitle: {},
         endGameViewImage: {},
         win             : false,
@@ -490,12 +489,13 @@ var currentGameTimeOut;
                 resetGame();
             }
         });
-        vars.playAgainButton = document.getElementById("playAgain");
+
         vars.endGameViewTitle = document.getElementById("endGameViewTitle");
         vars.endGameViewImage = document.getElementById("endGameViewImage");
 
-        vars.playAgainButton.addEventListener("touchend", resetGame, false);
-        vars.playAgainButton.addEventListener("click", resetGame, false);
+        var endGameView = document.getElementById("endGameView");
+        endGameView.addEventListener("touchend", resetGame, false);
+        endGameView.addEventListener("click", resetGame, false);
 
         // Start Donkey movement animation
         setInterval(animateElements, 5);

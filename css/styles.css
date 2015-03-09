@@ -8,13 +8,8 @@ html,body {
     left: 35px;
     width: 250px;
     height: 250px;
-    border: solid 1px green;
     position: absolute;
     background-color: transparent;
-}
-
-#outer-dropzone {
-    border: solid 1px green;
 }
 
 .tail {
@@ -30,14 +25,6 @@ html,body {
     width: 340px;
     height: 226px;
     position: absolute;
-}
-
-.drop-active {
-    border-color: #666;
-}
-
-.drop-target {
-    background-color: #29e;
 }
 
 .drag-drop {

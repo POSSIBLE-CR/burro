@@ -19,7 +19,6 @@ html,body {
 }
 
 .donkey {
-    top: 0;
     left: 600px;
     z-index: 1;
     width: 340px;
@@ -76,6 +75,7 @@ html,body {
 }
 
 .estefaniaTastan .donkey {
+    top: 500px;
     width: 345px;
     height: 250px;
     background: transparent url('../img/themes/estefaniaTastan/donkey.png') left top no-repeat;
@@ -256,7 +256,49 @@ html,body {
     background-size: 100%;
 }
 
+/* -------------------------------------------------------------------------------------
+ * Pablo Rojas */
+.pabloRojas {
+    background: transparent url('../img/themes/pabloRojas/bg.jpg') left top no-repeat;
+}
 
+.pabloRojas .tail {
+    width: 97px;
+    height: 190px;
+    background: transparent url('../img/themes/pabloRojas/tail.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pabloRojas .donkey {
+    top: 123px;
+    width: 275px;
+    height: 490px;
+    background: transparent url('../img/themes/pabloRojas/donkey.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pabloRojas .obstacle1 {
+    width: 114px;
+    height: 97px;
+    background: transparent url('../img/themes/pabloRojas/obstacle1.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pabloRojas .obstacle2 {
+    width: 91px;
+    height: 120px;
+    background: transparent url('../img/themes/pabloRojas/obstacle2.png') left top no-repeat;
+    background-size: 100%;
+}
+
+.pabloRojas .obstacle3 {
+    width: 115px;
+    height: 131.5px;
+    background: transparent url('../img/themes/pabloRojas/obstacle3.png') left top no-repeat;
+    background-size: 100%;
+}
+
+/* -------------------------------------------------------------------------------------*/
 .hide {
     display: none !important;
 }

@@ -19,7 +19,7 @@ var currentGameTimeOut;
 
         windowHeight    : window.innerHeight,
         windowWidth     : window.innerWidth,
-        skins           : ['estefaniaTastan','pabloMontero','pazUlloa','fabioCastro','gaboMurillo'],
+        skins           : ['estefaniaTastan','pabloMontero','pazUlloa','fabioCastro','gaboMurillo','pabloRojas'],
         skinPosition    : 0,
 
         beepSound       : new Audio('audio/beep.mp3'),
@@ -79,57 +79,18 @@ var currentGameTimeOut;
         };
 
         vars.obstacles = [vars.obstacle1, vars.obstacle2, vars.obstacle3];
-
-        if(skin == 'estefaniaTastan') {
-            // vars.obstacle1 = { 
-            //     obstacleWidth: 150,
-            //     obstacleHeight: 150,
-            //     posX: 140,
-            //     posY: 250,
-            //     elementID: 'obstacle1'
-            // },
-            // vars.obstacle2 = {
-            //     obstacleWidth: 150,
-            //     obstacleHeight: 250,
-            //     posX: 600,
-            //     posY: 40,
-            //     elementID: 'obstacle2'
-            // },
-            // vars.obstacle3 = {
-            //     obstacleWidth: 150,
-            //     obstacleHeight: 150,
-            //     posX: 500,
-            //     posY: 500,
-            //     elementID: 'obstacle3'
-            // }
-        }
-        else if(skin == 'pabloMontero') {
-        }
-
-        else if(skin == 'pazUlloa') {
-        }
-
-        else if(skin == 'fabioCastro') {
-        }
-
-        else if(skin == 'gaboMurillo') {
-        }
-
-
     }
 
     /***
      * Draws all the animated elements on the screen 
      */
-    function placeElements(){
+    function drawObstacles(){
         for(var i=0;i<vars.obstacles.length;i++){
             var obstacle = vars.obstacles[i];
 
             document.getElementById(obstacle.elementID).style.left = obstacle.posX+'px';
             document.getElementById(obstacle.elementID).style.top = obstacle.posY+'px';
         }
-
-        vars.donkey.posX = (window.innerWidth-vars.donkey.donkeyWidth);
     }
 
 
@@ -179,7 +140,7 @@ var currentGameTimeOut;
      */
     interact('.dropzone').dropzone({
         accept: '#tail', // only accept elements matching this CSS selector
-        overlap: 0.15, // Require a 65% element overlap for a drop to be possible
+        overlap: 0.45, // Percentage of element overlap required for a drop event
 
         // Listen for drop related events (Tail dropped inside the Donkey area.)
         ondrop: function (event) {
@@ -222,9 +183,39 @@ var currentGameTimeOut;
      * Inits the selected assets set. 
      */
     function initSkin() {
-        var skin = vars.skins[vars.skinPosition];
+        var skin = vars.skins[vars.skinPosition],
+            donkey = vars.donkey,
+            el = document.getElementById(donkey.elementID);
+
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
+
+        if(skin == 'estefaniaTastan'){
+            donkey.posY = 500;
+            donkey.posX = 600;
+        }
+        else if(skin == 'pabloMontero'){
+            donkey.posY = 500;
+            donkey.posX = 100;
+        }
+        else if(skin == 'pazUlloa'){
+            donkey.posY = 450;
+            donkey.posX = 400;
+        }
+        if(skin == 'fabioCastro'){
+            donkey.posY = 300;
+            donkey.posX = 700;
+        }
+        else if(skin == 'gaboMurillo'){
+            donkey.posY = 100;
+            donkey.posX = 750;
+        }
+        else if(skin == 'pabloRojas'){
+            donkey.posY = 278;
+            donkey.posX = 720;
+        }
+
+        el.style.top = donkey.posY + 'px';
     }
 
     /***
@@ -285,38 +276,6 @@ var currentGameTimeOut;
         if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-donkey.donkeyHeight)) {
 
             donkey.donkeyDirection='left';
-        }
-
-       
-        //--------------------------------------------------------------------
-        // Fabio Castro's donkey animation.
-        var skin = vars.skins[vars.skinPosition];
-            // skin = 'fabioCastro';
-
-        if(skin == 'fabioCastro'){
-            if(vars.fabioFirstTimeDown){
-                if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-donkey.donkeyHeight)) {
-                    donkey.donkeyDirection='topLeft';
-                    vars.fabioFirstTimeDown = false;
-                }
-                if(donkey.donkeyDirection==='topLeft' && donkey.posY <= 0 && vars.donkeyPositionX <= 0) {
-                    donkey.donkeyDirection='down';
-                }
-            }
-            else {
-                if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-250)) {
-                    donkey.donkeyDirection='topRight';
-                }
-                if(donkey.posY <= 0) {
-                    if(donkey.donkeyDirection==='topLeft' && vars.donkeyPositionX <= 0){
-                        donkey.donkeyDirection='down';
-                    }
-                    if(donkey.donkeyDirection==='topRight' && vars.donkeyPositionX >= (vars.windowWidth-donkey.donkeyWidth)){
-                        donkey.donkeyDirection='down';
-                        vars.fabioFirstTimeDown = true;
-                    }
-                }               
-            }            
         }
     }
 
@@ -390,6 +349,7 @@ var currentGameTimeOut;
      * Resets all values to the default state 
      */
     function resetGame(){
+        initSkin();
         resetDonkey();
         resetDonkeyTailPosition();
 
@@ -398,7 +358,6 @@ var currentGameTimeOut;
         if(vars.skinPosition == (vars.skins.length)){
             vars.skinPosition = 0;
         }
-        initSkin();
         vars.win = false;
         currentGameTimeOut = null;
     }
@@ -409,14 +368,9 @@ var currentGameTimeOut;
     function resetDonkey(){
         var donkey = vars.donkey,
             el = document.getElementById(donkey.elementID);
-        
-        donkey.posX = (window.innerWidth-donkey.donkeyWidth);
-        donkey.posY = 0;
-        //console.log(donkey.posY);
-
+console.log(vars.donkey.posX);
         el.style.top = donkey.posY+'px';
         el.style.left = donkey.posX+'px';
-        donkey.donkeyDirection = 'down';
     }
 
     /***
@@ -479,9 +433,9 @@ var currentGameTimeOut;
         vars.wrapper = document.getElementById('mainWrapper');
         vars.endGameView = document.getElementById('endGameView');
 
-        initSkin(skin);
         createElements();
-        placeElements();
+        initSkin();
+        drawObstacles();
 
         // If space bar is hit, reset the game
         window.addEventListener('keydown', function(e){

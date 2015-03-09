@@ -2,7 +2,6 @@
 // February 2015
 
 var burroFID2015 = burroFID2015 || {};
-var currentGameTimeOut;
 
 (function (context) {
 
@@ -41,10 +40,7 @@ var currentGameTimeOut;
     /***
      * Creates Elements Objects 
      */
-    // var skin = vars.skins[vars.skinPosition];
     function createElements(){
-        var skin = vars.skins[vars.skinPosition];
-
         vars.donkey = {
             donkeyDirection : 'down',
             donkeyWidth     : 345,
@@ -182,10 +178,11 @@ var currentGameTimeOut;
     /***
      * Inits the selected assets set. 
      */
-    function initSkin() {
+    function initSkin() {        
         var skin = vars.skins[vars.skinPosition],
             donkey = vars.donkey,
-            el = document.getElementById(donkey.elementID);
+            el = document.getElementById(donkey.elementID),
+            music = document.getElementById('music');
 
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
@@ -193,29 +190,35 @@ var currentGameTimeOut;
         if(skin == 'estefaniaTastan'){
             donkey.posY = 500;
             donkey.posX = 600;
+            music.src = 'audio/estefaniaTastan.mp3';
         }
         else if(skin == 'pabloMontero'){
             donkey.posY = 500;
             donkey.posX = 100;
+            music.src = 'audio/pabloMontero.mp3'
         }
         else if(skin == 'pazUlloa'){
             donkey.posY = 450;
             donkey.posX = 400;
+            music.src = 'audio/pazUlloa.mp3'
         }
         if(skin == 'fabioCastro'){
             donkey.posY = 300;
             donkey.posX = 700;
+            music.src = 'audio/fabioCastro.mp3'
         }
         else if(skin == 'gaboMurillo'){
             donkey.posY = 100;
             donkey.posX = 750;
+            music.src = 'audio/gabrielMurillo.mp3'
         }
         else if(skin == 'pabloRojas'){
             donkey.posY = 278;
             donkey.posX = 720;
+            music.src = 'audio/pabloRojas.mp3'
         }
 
-        el.style.top = donkey.posY + 'px';
+        music.play();
     }
 
     /***
@@ -349,17 +352,18 @@ var currentGameTimeOut;
      * Resets all values to the default state 
      */
     function resetGame(){
+        vars.skinPosition++;
+
+        if(vars.skinPosition == vars.skins.length){
+            vars.skinPosition = 0;
+        }
+        
         initSkin();
         resetDonkey();
         resetDonkeyTailPosition();
-
-        vars.skinPosition++;
-
-        if(vars.skinPosition == (vars.skins.length)){
-            vars.skinPosition = 0;
-        }
+        
         vars.win = false;
-        currentGameTimeOut = null;
+
     }
 
     /***
@@ -368,7 +372,7 @@ var currentGameTimeOut;
     function resetDonkey(){
         var donkey = vars.donkey,
             el = document.getElementById(donkey.elementID);
-console.log(vars.donkey.posX);
+
         el.style.top = donkey.posY+'px';
         el.style.left = donkey.posX+'px';
     }
@@ -452,7 +456,8 @@ console.log(vars.donkey.posX);
         endGameView.addEventListener("click", resetGame, false);
 
         // Start Donkey movement animation
-        setInterval(animateElements, 5);
+        setInterval(animateElements, 20);
+        document.getElementById('music').play();
     }
 
     init();

@@ -6,11 +6,15 @@ html,body {
 #inner-dropzone {
     top: 50px;
     left: 35px;
-    width: 50px;
-    height: 50px;
-    /*border: solid 1px green;*/
+    width: 250px;
+    height: 250px;
+    border: solid 1px green;
     position: absolute;
     background-color: transparent;
+}
+
+#outer-dropzone {
+    border: solid 1px green;
 }
 
 .tail {
@@ -49,11 +53,6 @@ html,body {
     background-color: #4e4;
 }
 
-.dropzone {
-    position: absolute;
-    /*border : 2px solid darkred;*/
-}
-
 /* SKINS */
 /*********************/
 
@@ -69,6 +68,10 @@ html,body {
     width: 1024px;
     height: 768px;
     background-size: 100%;
+}
+
+.obstacle {
+    position: absolute;
 }
 
 
@@ -247,7 +250,7 @@ html,body {
 
 .gaboMurillo .donkey {
     width: 239px;
-    height: 260px;
+    height: 340px;
     background: transparent url('../img/themes/gaboMurillo/donkey.png') left top no-repeat;
     background-size: 100%;
 }

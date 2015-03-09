@@ -168,19 +168,10 @@ var currentGameTimeOut;
             }
 
             checkTailPosition();
-
-            var obstacleLeft = document.getElementsByClassName("obstacle2")[0].style.left,
-                obstacleTop = document.getElementsByClassName("obstacle2")[0].style.top;
-            // console.log('left '+obstacleLeft+' top '+obstacleTop);
-
         },
 
         onend : function(event){
-            if (!currentGameTimeOut && !vars.win) {
-                currentGameTimeOut = setTimeout(function () {
-                    endGame(false)
-                }, 2000);
-            }
+            endGame();
         }
       });
 
@@ -188,30 +179,20 @@ var currentGameTimeOut;
      * Adds dropzone functionality. Enables draggables to be dropped into the dropzone 
      */
     interact('.dropzone').dropzone({
-        accept: '#yes-drop', // only accept elements matching this CSS selector
-        overlap: 0.65, // Require a 65% element overlap for a drop to be possible
+        accept: '#tail', // only accept elements matching this CSS selector
+        overlap: 0.15, // Require a 65% element overlap for a drop to be possible
 
         // Listen for drop related events (Tail dropped inside the Donkey area.)
         ondrop: function (event) {
             vars.win = true;
-            clearTimeout(currentGameTimeOut);
-            var targetClassName = event.target.classList[1];
-            /***** This is the GAME WIN event ****/
-            if(targetClassName === 'donkey'){
-                endGame(true);
-            }
-            else{
-                endGame(false);
-            }
         }
     });
 
     /***
      * handles the end of the game
-     * @param win {Boolean} is true if the user won the game or false if it lost
      */
-    function endGame(win){
-        if (win){
+    function endGame(){
+        if (vars.win){
             vars.clapSound.play();
             vars.gameOver = false;
             vars.endGameViewTitle.innerHTML = "WINNER!!!!!!";
@@ -251,7 +232,7 @@ var currentGameTimeOut;
      * Triggers all the animations 
      */
      function animateElements(){
-        animateDonkey();
+        //animateDonkey();
         animateObstacles();
      }
 
@@ -443,7 +424,7 @@ var currentGameTimeOut;
      * Resets the donkey tail position 
      */
     function resetDonkeyTailPosition(){
-        var target = document.getElementById('yes-drop');
+        var target = document.getElementById('tail');
 
         target.style.webkitTransform =
         target.style.transform = 'translate(0px, 0px)';

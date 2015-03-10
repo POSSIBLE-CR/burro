@@ -50,13 +50,18 @@ html,body {
     background-size: 100%;
 }
 
-#endGameView {
+#endGameView,
+#standByView {
     z-index: 2;
     display: none;
     width: 1024px;
     height: 768px;
     position: absolute;
     background-size: 100%;
+}
+
+#standByView {
+    z-index: 3;
 }
 
 .obstacle {

@@ -11,8 +11,8 @@ var burroFID2015 = burroFID2015 || {};
     vars = {
 
         wrapper         : {},
+        standByView     : {},
         endGameView     : {},
-        endGameViewImage: {},
         win             : false,
 
         windowHeight    : window.innerHeight,
@@ -147,25 +147,30 @@ var burroFID2015 = burroFID2015 || {};
      * handles the end of the game
      */
     function endGame(){
-        var donkey = document.getElementById(vars.donkey.elementID);
-            bgImgSrc = "url('img/themes/";
-        document.getElementById('music').pause();
-
+        var skin = vars.skins[vars.skinPosition],
+            music = document.getElementById('music');
+            donkey = document.getElementById(vars.donkey.elementID);
+            donkeyBgImgSrc = "url('img/themes/",
+            standByBgImgSrc = "url('img/themes/" + skin + "/introScreen.png')";            
+        
         if (vars.win){
             vars.clapSound.play();
             vars.gameOver = false;
+
             vars.endGameView.style.backgroundImage = "url('img/ganaste.png')";
-            bgImgSrc += vars.skins[vars.skinPosition] + "/donkeyWin.png')";
+            donkeyBgImgSrc += skin + "/donkeyWin.png')";
             addClass(vars.endGameView,"winner show");
         }else {
             vars.gameOver = true;
             vars.donkeySound.play();
             vars.endGameView.style.backgroundImage = "url('img/perdiste.png')";
-            bgImgSrc += vars.skins[vars.skinPosition] + "/donkeyFail.png')";
+            donkeyBgImgSrc += skin + "/donkeyFail.png')";
             addClass(vars.endGameView, "loser show");
         }
 
-        donkey.style.backgroundImage = bgImgSrc;
+        music.pause();
+        vars.standByView.style.backgroundImage = standByBgImgSrc;
+        donkey.style.backgroundImage = donkeyBgImgSrc;
     }
 
     /***
@@ -188,6 +193,7 @@ var burroFID2015 = burroFID2015 || {};
 
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
+        vars.standByView.setAttribute("class", skin);
 
         if(skin == 'estefaniaTastan'){
             donkey.posY = 500;
@@ -350,6 +356,13 @@ var burroFID2015 = burroFID2015 || {};
      }
 
     /***
+     * Shows the theme's initial state
+     */
+    function showStandByScreen(){
+        addClass(vars.standByView,"show");
+    }
+
+    /***
      * Resets all values to the default state 
      */
     function resetGame(){
@@ -436,8 +449,10 @@ var burroFID2015 = burroFID2015 || {};
      */
     function init () {
         var skin = vars.skins[vars.skinPosition];
+
         vars.wrapper = document.getElementById('mainWrapper');
         vars.endGameView = document.getElementById('endGameView');
+        vars.standByView = document.getElementById('standByView');
 
         createElements();
         initSkin();
@@ -450,11 +465,13 @@ var burroFID2015 = burroFID2015 || {};
             }
         });
 
-        vars.endGameViewImage = document.getElementById("endGameViewImage");
-
         var endGameView = document.getElementById("endGameView");
-        endGameView.addEventListener("touchend", resetGame, false);
-        endGameView.addEventListener("click", resetGame, false);
+        endGameView.addEventListener("touchend", showStandByScreen, false);
+        endGameView.addEventListener("click", showStandByScreen, false);
+
+        vars.standByView.addEventListener("touchend", resetGame, false);
+        vars.standByView.addEventListener("click", resetGame, false);
+
 
         // Start Donkey movement animation
         setInterval(animateElements, 20);

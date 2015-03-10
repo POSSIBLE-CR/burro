@@ -12,7 +12,6 @@ var burroFID2015 = burroFID2015 || {};
 
         wrapper         : {},
         endGameView     : {},
-        endGameViewTitle: {},
         endGameViewImage: {},
         win             : false,
 
@@ -148,23 +147,25 @@ var burroFID2015 = burroFID2015 || {};
      * handles the end of the game
      */
     function endGame(){
+        var donkey = document.getElementById(vars.donkey.elementID);
+            bgImgSrc = "url('img/themes/";
         document.getElementById('music').pause();
 
         if (vars.win){
             vars.clapSound.play();
             vars.gameOver = false;
-            vars.endGameViewTitle.innerHTML = "WINNER!!!!!!";
-            vars.endGameViewImage.src = 'img/themes/'+ vars.skins[vars.skinPosition] + '/donkeyWin.png';
-            addClass(vars.wrapper,"hide");
+            vars.endGameView.style.backgroundImage = "url('img/ganaste.png')";
+            bgImgSrc += vars.skins[vars.skinPosition] + "/donkeyWin.png')";
             addClass(vars.endGameView,"winner show");
         }else {
             vars.gameOver = true;
             vars.donkeySound.play();
-            vars.endGameViewTitle.innerHTML = "LOSER!!!!!!";
-            vars.endGameViewImage.src = 'img/themes/'+ vars.skins[vars.skinPosition] + '/donkeyFail.png';
-            addClass(vars.wrapper, "hide");
+            vars.endGameView.style.backgroundImage = "url('img/perdiste.png')";
+            bgImgSrc += vars.skins[vars.skinPosition] + "/donkeyFail.png')";
             addClass(vars.endGameView, "loser show");
         }
+
+        donkey.style.backgroundImage = bgImgSrc;
     }
 
     /***
@@ -183,7 +184,6 @@ var burroFID2015 = burroFID2015 || {};
     function initSkin() {        
         var skin = vars.skins[vars.skinPosition],
             donkey = vars.donkey,
-            el = document.getElementById(donkey.elementID),
             music = document.getElementById('music');
 
         vars.wrapper.setAttribute("class", skin);
@@ -279,7 +279,6 @@ var burroFID2015 = burroFID2015 || {};
             donkey.donkeyDirection='down';
         }
         if(donkey.donkeyDirection==='down' && donkey.posY >= (vars.windowHeight-donkey.donkeyHeight)) {
-
             donkey.donkeyDirection='left';
         }
     }
@@ -365,7 +364,6 @@ var burroFID2015 = burroFID2015 || {};
         resetDonkeyTailPosition();
         
         vars.win = false;
-
     }
 
     /***
@@ -377,6 +375,8 @@ var burroFID2015 = burroFID2015 || {};
 
         el.style.top = donkey.posY+'px';
         el.style.left = donkey.posX+'px';
+        el.style.backgroundImage = "url('img/themes/"+ vars.skins[vars.skinPosition] + "/donkey.png')";
+
     }
 
     /***
@@ -450,7 +450,6 @@ var burroFID2015 = burroFID2015 || {};
             }
         });
 
-        vars.endGameViewTitle = document.getElementById("endGameViewTitle");
         vars.endGameViewImage = document.getElementById("endGameViewImage");
 
         var endGameView = document.getElementById("endGameView");

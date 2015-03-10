@@ -43,16 +43,19 @@ html,body {
 /*********************/
 
 #mainWrapper {
+    z-index: 1;
     width: 1024px;
     height: 768px;
+    position: absolute;
     background-size: 100%;
 }
 
 #endGameView {
+    z-index: 2;
     display: none;
-    background-color : white;
     width: 1024px;
     height: 768px;
+    position: absolute;
     background-size: 100%;
 }
 

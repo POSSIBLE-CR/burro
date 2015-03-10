@@ -148,6 +148,8 @@ var burroFID2015 = burroFID2015 || {};
      * handles the end of the game
      */
     function endGame(){
+        document.getElementById('music').pause();
+
         if (vars.win){
             vars.clapSound.play();
             vars.gameOver = false;

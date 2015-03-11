@@ -150,8 +150,7 @@ var burroFID2015 = burroFID2015 || {};
         var skin = vars.skins[vars.skinPosition],
             music = document.getElementById('music');
             donkey = document.getElementById(vars.donkey.elementID);
-            donkeyBgImgSrc = "url('img/themes/",
-            standByBgImgSrc = "url('img/themes/" + skin + "/introScreen.png')";            
+            donkeyBgImgSrc = "url('img/themes/";
         
         if (vars.win){
             vars.clapSound.play();
@@ -169,7 +168,6 @@ var burroFID2015 = burroFID2015 || {};
         }
 
         music.pause();
-        vars.standByView.style.backgroundImage = standByBgImgSrc;
         donkey.style.backgroundImage = donkeyBgImgSrc;
     }
 
@@ -189,11 +187,14 @@ var burroFID2015 = burroFID2015 || {};
     function initSkin() {        
         var skin = vars.skins[vars.skinPosition],
             donkey = vars.donkey,
-            music = document.getElementById('music');
+            music = document.getElementById('music'),
+            standByBgImgSrc = "url('img/themes/" + skin + "/introScreen.png')";
 
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
         vars.standByView.setAttribute("class", skin);
+        vars.standByView.style.backgroundImage = standByBgImgSrc;
+        addClass(vars.standByView,"show");
 
         if(skin == 'estefaniaTastan'){
             donkey.posY = 500;
@@ -356,13 +357,6 @@ var burroFID2015 = burroFID2015 || {};
      }
 
     /***
-     * Shows the theme's initial state
-     */
-    function showStandByScreen(){
-        addClass(vars.standByView,"show");
-    }
-
-    /***
      * Resets all values to the default state 
      */
     function resetGame(){
@@ -372,6 +366,10 @@ var burroFID2015 = burroFID2015 || {};
             vars.skinPosition = 0;
         }
         
+        var skin = vars.skins[vars.skinPosition];
+        vars.endGameView.setAttribute("class", skin);
+        addClass(vars.standByView,'show');
+
         initSkin();
         resetDonkey();
         resetDonkeyTailPosition();
@@ -444,6 +442,15 @@ var burroFID2015 = burroFID2015 || {};
         }
     }
 
+
+    /***
+     * Hides the Stand By Screen
+     */
+    function hideStandByScreen () {
+        var skin = vars.skins[vars.skinPosition];
+        vars.standByView.setAttribute("class", skin);
+    }
+
     /***
      * Init all required functions 
      */
@@ -466,12 +473,11 @@ var burroFID2015 = burroFID2015 || {};
         });
 
         var endGameView = document.getElementById("endGameView");
-        endGameView.addEventListener("touchend", showStandByScreen, false);
-        endGameView.addEventListener("click", showStandByScreen, false);
+        endGameView.addEventListener("touchend", resetGame, false);
+        endGameView.addEventListener("click", resetGame, false);
 
-        vars.standByView.addEventListener("touchend", resetGame, false);
-        vars.standByView.addEventListener("click", resetGame, false);
-
+        vars.standByView.addEventListener("touchend", hideStandByScreen, false);
+        vars.standByView.addEventListener("click", hideStandByScreen, false);
 
         // Start Donkey movement animation
         setInterval(animateElements, 20);

@@ -60,6 +60,10 @@ html,body {
     background-size: 100%;
 }
 
+#standByView {
+    background: transparent url('../img/introScreenDim.png') left top no-repeat;    
+}
+
 .obstacle {
     position: absolute;
 }

@@ -186,13 +186,11 @@ var burroFID2015 = burroFID2015 || {};
     function initSkin() {        
         var skin = vars.skins[vars.skinPosition],
             donkey = vars.donkey,
-            music = document.getElementById('music'),
-            standByBgImgSrc = "url('img/themes/" + skin + "/introScreen.png')";
+            music = document.getElementById('music');
 
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
         vars.standByView.setAttribute("class", skin);
-        vars.standByView.style.backgroundImage = standByBgImgSrc;
         addClass(vars.standByView,"show");
 
         if(skin == 'estefaniaTastan'){

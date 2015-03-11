@@ -314,28 +314,6 @@ var burroFID2015 = burroFID2015 || {};
                 obstacle.posY++;
                 el.style.top = obstacle.posY+'px';
             }
-            // else{
-
-            //     if(obstacle.direction == 'topRight'){
-            //         obstacle.posY--;
-            //         obstacle.posX+=1.3;
-            //     } 
-            //     else if(obstacle.direction == 'topLeft'){
-            //         obstacle.posY--;
-            //         obstacle.posX-=1.3;
-            //     } 
-            //     else if(obstacle.direction == 'bottomRight'){
-            //         obstacle.posY++;
-            //         obstacle.posX+=1.3;
-            //     } 
-            //     else if(obstacle.direction == 'bottomLeft'){
-            //         obstacle.posY++;
-            //         obstacle.posX-1.3;
-            //     }
-
-            //     el.style.top = obstacle.posY+'px';
-            //     el.style.left = obstacle.posX+'px';
-            // }
 
             if(obstacle.direction == 'right' && obstacle.posX > (wWidth-obstacle.obstacleWidth)){
                 obstacle.direction = 'left';            
@@ -349,7 +327,6 @@ var burroFID2015 = burroFID2015 || {};
             else if(obstacle.direction == 'down' && obstacle.posY > (wHeight-obstacle.obstacleHeight)){
                 obstacle.direction = 'top';
             }
-
         }
      }
 

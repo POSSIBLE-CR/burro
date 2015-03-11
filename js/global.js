@@ -20,13 +20,12 @@ var burroFID2015 = burroFID2015 || {};
         skins           : ['estefaniaTastan','pabloMontero','pazUlloa','fabioCastro','gaboMurillo','pabloRojas'],
         skinPosition    : 0,
 
-        beepSound       : new Audio('audio/beep.mp3'),
         donkeySound     : new Audio('audio/donkey.mp3'),
-        pigSound        : new Audio('audio/pig.mp3'),
-        chickenSound    : new Audio('audio/chicken.mp3'),
         clapSound       : new Audio('audio/win.mp3'),
+        obstacle1Sound  : new Audio('audio/obstacle1.mp3'),
+        obstacle2Sound  : new Audio('audio/obstacle2.mp3'),
+        obstacle3Sound  : new Audio('audio/obstacle3.mp3'),
 
-        fabioFirstTimeDown : true,
         obstacle1       : {},
         obstacle2       : {},
         obstacle3       : {},
@@ -417,8 +416,14 @@ var burroFID2015 = burroFID2015 || {};
      * Check overlap between the tail and the obstacles 
      */
     function checkTailPosition(){
-        if(isTailOverObstacle(vars.obstacle1) || isTailOverObstacle(vars.obstacle2) || isTailOverObstacle(vars.obstacle3) ){
-            vars.beepSound.play();            
+        if( isTailOverObstacle(vars.obstacle1) ){
+            vars.obstacle1Sound.play();
+        }
+        else if( isTailOverObstacle(vars.obstacle2 ) ){
+            vars.obstacle2Sound.play();
+        }
+        else if( isTailOverObstacle(vars.obstacle3 ) ){
+            vars.obstacle3Sound.play();
         }
     }
 

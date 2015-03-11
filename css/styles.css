@@ -61,7 +61,7 @@ html,body {
 }
 
 #standByView {
-    background: transparent url('../img/introScreenDim.png') left top no-repeat;    
+    background: transparent url('../img/introScreen.png') left top no-repeat;    
 }
 
 .obstacle {

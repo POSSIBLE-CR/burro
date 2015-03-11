@@ -59,9 +59,9 @@ var burroFID2015 = burroFID2015 || {};
             obstacleWidth: 150,
             obstacleHeight: 250,
             posX: 600,
-            posY: 40,
+            posY: 400,
             elementID: 'obstacle2',
-            direction: 'down'
+            direction: 'left'
         },
         vars.obstacle3 = {
             obstacleWidth: 150,
@@ -314,28 +314,28 @@ var burroFID2015 = burroFID2015 || {};
                 obstacle.posY++;
                 el.style.top = obstacle.posY+'px';
             }
-            else{
+            // else{
 
-                if(obstacle.direction == 'topRight'){
-                    obstacle.posY--;
-                    obstacle.posX+=1.3;
-                } 
-                else if(obstacle.direction == 'topLeft'){
-                    obstacle.posY--;
-                    obstacle.posX-=1.3;
-                } 
-                else if(obstacle.direction == 'bottomRight'){
-                    obstacle.posY++;
-                    obstacle.posX+=1.3;
-                } 
-                else if(obstacle.direction == 'bottomLeft'){
-                    obstacle.posY++;
-                    obstacle.posX-1.3;
-                }
+            //     if(obstacle.direction == 'topRight'){
+            //         obstacle.posY--;
+            //         obstacle.posX+=1.3;
+            //     } 
+            //     else if(obstacle.direction == 'topLeft'){
+            //         obstacle.posY--;
+            //         obstacle.posX-=1.3;
+            //     } 
+            //     else if(obstacle.direction == 'bottomRight'){
+            //         obstacle.posY++;
+            //         obstacle.posX+=1.3;
+            //     } 
+            //     else if(obstacle.direction == 'bottomLeft'){
+            //         obstacle.posY++;
+            //         obstacle.posX-1.3;
+            //     }
 
-                el.style.top = obstacle.posY+'px';
-                el.style.left = obstacle.posX+'px';
-            }
+            //     el.style.top = obstacle.posY+'px';
+            //     el.style.left = obstacle.posX+'px';
+            // }
 
             if(obstacle.direction == 'right' && obstacle.posX > (wWidth-obstacle.obstacleWidth)){
                 obstacle.direction = 'left';            
@@ -343,7 +343,7 @@ var burroFID2015 = burroFID2015 || {};
             else if(obstacle.direction == 'left' && obstacle.posX < 0){
                 obstacle.direction = 'right';
             } 
-            else if(obstacle.direction == 'top' && obstacle.posY < 0){
+            else if(obstacle.direction == 'top' && obstacle.posY < 220){
                 obstacle.direction = 'down';
             }
             else if(obstacle.direction == 'down' && obstacle.posY > (wHeight-obstacle.obstacleHeight)){

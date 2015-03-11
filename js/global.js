@@ -221,7 +221,7 @@ var burroFID2015 = burroFID2015 || {};
             music.src = 'audio/gabrielMurillo.mp3'
         }
         else if(skin == 'pabloRojas'){
-            donkey.posY = 278;
+            donkey.posY = 122;
             donkey.posX = 720;
             music.src = 'audio/pabloRojas.mp3'
         }

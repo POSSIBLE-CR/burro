@@ -186,12 +186,14 @@ var burroFID2015 = burroFID2015 || {};
     function initSkin() {        
         var skin = vars.skins[vars.skinPosition],
             donkey = vars.donkey,
-            music = document.getElementById('music');
+            music = document.getElementById('music'),
+            bgDiv = document.getElementById(skin+'Bg');
 
         vars.wrapper.setAttribute("class", skin);
         vars.endGameView.setAttribute("class", skin);
         vars.standByView.setAttribute("class", skin);
         addClass(vars.standByView,"show");
+        addClass(bgDiv, "show");
 
         if(skin == 'estefaniaTastan'){
             donkey.posY = 500;
@@ -334,13 +336,18 @@ var burroFID2015 = burroFID2015 || {};
      * Resets all values to the default state 
      */
     function resetGame(){
+        var skin = vars.skins[vars.skinPosition],
+            bgDiv = document.getElementById(skin+'Bg');
+        bgDiv.setAttribute("class", 'bgDiv');
+
         vars.skinPosition++;
 
         if(vars.skinPosition == vars.skins.length){
             vars.skinPosition = 0;
         }
         
-        var skin = vars.skins[vars.skinPosition];
+        skin = vars.skins[vars.skinPosition],
+        
         vars.endGameView.setAttribute("class", skin);
         addClass(vars.standByView,'show');
 

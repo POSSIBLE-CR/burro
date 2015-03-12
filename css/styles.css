@@ -47,7 +47,7 @@ html,body {
     width: 1024px;
     height: 768px;
     position: absolute;
-    background-size: 100%;
+    /*background-size: 100%;*/
 }
 
 #endGameView,
@@ -68,11 +68,22 @@ html,body {
     position: absolute;
 }
 
+.bgDiv {
+    display: none;
+    width: 1024px;
+    height: 768px;
+    position: absolute;
+}
 
 /* -------------------------------------------------------------------------------------
  * Estefanía Tastan */
 .estefaniaTastan {
+    /*background: transparent url('../img/themes/estefaniaTastan/bg.jpg') left top no-repeat;*/
+}
+
+#estefaniaTastanBg {
     background: transparent url('../img/themes/estefaniaTastan/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .estefaniaTastan .tail {
@@ -114,7 +125,12 @@ html,body {
 /* -------------------------------------------------------------------------------------
  * Pablo Montero */
 .pabloMontero {
+    /*background: transparent url('../img/themes/pabloMontero/bg.jpg') left top no-repeat;*/
+}
+
+#pabloMonteroBg {
     background: transparent url('../img/themes/pabloMontero/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .pabloMontero .tail {
@@ -150,8 +166,13 @@ html,body {
 
  /* -------------------------------------------------------------------------------------
   * Fabio Castro */
-.fabioCastro {
+.fabioCastro{
+    /*background: transparent url('../img/themes/fabioCastro/bg.jpg') left top no-repeat;*/
+}
+
+#fabioCastroBg {
     background: transparent url('../img/themes/fabioCastro/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .fabioCastro .tail {
@@ -192,7 +213,12 @@ html,body {
 /* -------------------------------------------------------------------------------------
  * Paz Ulloa */
 .pazUlloa {
+    /*background: transparent url('../img/themes/pazUlloa/bg.jpg') left top no-repeat;*/
+}
+
+#pazUlloaBg {
     background: transparent url('../img/themes/pazUlloa/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .pazUlloa .tail {
@@ -233,7 +259,12 @@ html,body {
 /* -------------------------------------------------------------------------------------
  * Gabo Murillo */
 .gaboMurillo {
+    /*background: transparent url('../img/themes/gaboMurillo/bg.jpg') left top no-repeat;*/
+}
+
+#gaboMurilloBg {
     background: transparent url('../img/themes/gaboMurillo/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .gaboMurillo .tail {
@@ -267,7 +298,12 @@ html,body {
 /* -------------------------------------------------------------------------------------
  * Pablo Rojas */
 .pabloRojas {
+    /*background: transparent url('../img/themes/pabloRojas/bg.jpg') left top no-repeat;*/
+}
+
+#pabloRojasBg {
     background: transparent url('../img/themes/pabloRojas/bg.jpg') left top no-repeat;
+    background-size: 100%;
 }
 
 .pabloRojas .tail {

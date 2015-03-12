@@ -31,8 +31,8 @@ var burroFID2015 = burroFID2015 || {};
         obstacle3       : {},
         obstacles       : [],
         tail            : {},
-        donkey : {}
-
+        donkey          : {},
+        timer           : 0
     };
 
     /***
@@ -168,6 +168,9 @@ var burroFID2015 = burroFID2015 || {};
 
         music.pause();
         donkey.style.backgroundImage = donkeyBgImgSrc;
+        
+        // console.log('se envio ' + vars.timer + ' segundos');
+        sendStats(vars.win, vars.timer, skin);
     }
 
     /***
@@ -438,6 +441,31 @@ var burroFID2015 = burroFID2015 || {};
         vars.standByView.setAttribute("class", skin);
     }
 
+    /**
+     * Ajax request to save statistics
+     */
+    function sendStats(win, duration, skin){
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState==4)
+            {
+                
+            }
+        };
+
+        xmlhttp.open("POST","http://192.168.10.101:3000/api/track");
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlhttp.send(JSON.stringify({"win":win,"duration": duration,"skin": skin}));
+    };
+
+    /**
+     * Add one second to the timer variabla
+     */
+    function timer(){
+        vars.timer++;
+    }
+
     /***
      * Init all required functions 
      */
@@ -469,6 +497,9 @@ var burroFID2015 = burroFID2015 || {};
         // Start Donkey movement animation
         setInterval(animateElements, 20);
         document.getElementById('music').play();
+
+        // Start timer
+        setInterval(timer, 1000);
     }
 
     init();

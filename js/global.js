@@ -149,7 +149,8 @@ var burroFID2015 = burroFID2015 || {};
         var skin = vars.skins[vars.skinPosition],
             music = document.getElementById('music');
             donkey = document.getElementById(vars.donkey.elementID);
-            donkeyBgImgSrc = "url('img/themes/";
+            donkeyBgImgSrc = "url('img/themes/",
+            winStats = '';
         
         if (vars.win){
             vars.clapSound.play();
@@ -158,19 +159,21 @@ var burroFID2015 = burroFID2015 || {};
             vars.endGameView.style.backgroundImage = "url('img/ganaste.png')";
             donkeyBgImgSrc += skin + "/donkeyWin.png')";
             addClass(vars.endGameView,"winner show");
+            winStats = 'true';
         }else {
             vars.gameOver = true;
             vars.donkeySound.play();
             vars.endGameView.style.backgroundImage = "url('img/perdiste.png')";
             donkeyBgImgSrc += skin + "/donkeyFail.png')";
             addClass(vars.endGameView, "loser show");
+            winStats = 'false';
         }
 
         music.pause();
         donkey.style.backgroundImage = donkeyBgImgSrc;
         
-        // console.log('se envio ' + vars.timer + ' segundos');
-        sendStats(vars.win, vars.timer, skin);
+        console.log('se envio ' + vars.timer + ' segundos');
+        sendStats(winStats, vars.timer, skin);
     }
 
     /***
@@ -439,6 +442,8 @@ var burroFID2015 = burroFID2015 || {};
     function hideStandByScreen () {
         var skin = vars.skins[vars.skinPosition];
         vars.standByView.setAttribute("class", skin);
+
+        vars.timer = 0;
     }
 
     /**

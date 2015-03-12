@@ -172,7 +172,7 @@ var burroFID2015 = burroFID2015 || {};
         music.pause();
         donkey.style.backgroundImage = donkeyBgImgSrc;
         
-        console.log('se envio ' + vars.timer + ' segundos');
+        //console.log('se envio ' + vars.timer + ' segundos');
         sendStats(winStats, vars.timer, skin);
     }
 
@@ -494,10 +494,10 @@ var burroFID2015 = burroFID2015 || {};
 
         var endGameView = document.getElementById("endGameView");
         endGameView.addEventListener("touchend", resetGame, false);
-        endGameView.addEventListener("click", resetGame, false);
+        // endGameView.addEventListener("click", resetGame, false);
 
         vars.standByView.addEventListener("touchend", hideStandByScreen, false);
-        vars.standByView.addEventListener("click", hideStandByScreen, false);
+        // vars.standByView.addEventListener("click", hideStandByScreen, false);
 
         // Start Donkey movement animation
         setInterval(animateElements, 20);

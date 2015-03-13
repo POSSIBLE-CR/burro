@@ -134,7 +134,7 @@ var burroFID2015 = burroFID2015 || {};
      */
     interact('.dropzone').dropzone({
         accept: '#tail', // only accept elements matching this CSS selector
-        overlap: 0.45, // Percentage of element overlap required for a drop event
+        overlap: 0.15, // Percentage of element overlap required for a drop event
 
         // Listen for drop related events (Tail dropped inside the Donkey area.)
         ondrop: function (event) {

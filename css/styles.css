@@ -63,7 +63,7 @@ html,body {
 }
 
 #standByView {
-    background: transparent url('../img/introScreen.png') left top no-repeat;    
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .obstacle {
